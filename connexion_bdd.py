@@ -1,14 +1,18 @@
 import mysql.connector
 from mysql.connector import errorcode
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def get_connection():
     try:
         config = {
-            'host': "127.0.0.1",
-            'port':3306,
-            'user': "root",
-            'password': "",
-            'database': "hopital"
+            'host': os.getenv("DB_HOST"),
+            'port': os.getenv("DB_PORT"),
+            'user': os.getenv("DB_USER"),
+            'password': os.getenv("DB_PASSWORD"),
+            'database': os.getenv("DB_DATABASE")
         }
         
         connexion = mysql.connector.connect(**config)
